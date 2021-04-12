@@ -1,13 +1,14 @@
 const {Usuario, Post, Comentario, sequelize} = require('./models');
+const {Op} = require('sequelize');
 
 Post.findAll()
 .then((result) => {
-    console.table(result.map(user => user.toJSON()))
+    console.log(result.map(user => user.toJSON()))
 });
 
 Post.findByPk(2)
 .then((result) => {
-    console.table(result.toJSON());
+    console.log(result.toJSON());
 });
 
 Post.findOne({
@@ -16,17 +17,26 @@ Post.findOne({
     }
 })
 .then((result) => {
-    console.table(result.toJSON());
+    console.log(result.toJSON());
+});
+
+Post.findAll({
+    where : {
+        texto: {[Op.like]: 'oi%'}
+    }
+})
+.then((result) => {
+    console.log(result.toJSON());
 });
 
 Comentario.findAll()
 .then((result) => {
-    console.table(result.map(user => user.toJSON()))
+    console.log(result.map(user => user.toJSON()))
 });
 
 Comentario.findByPk(1)
 .then((result) => {
-    console.table(result.toJSON());
+    console.log(result.toJSON());
 });
 
 Comentario.findOne({
@@ -35,5 +45,16 @@ Comentario.findOne({
     }
 })
 .then((result) => {
-    console.table(result.toJSON());
+    console.log(result.toJSON());
+});
+
+//desafios 12/04
+
+Usuario.findAll({
+    where:{
+       nome:{[Op.like]: '%a%'}  
+    }
+})
+.then((result) => {
+    console.table(result.map(usuario => usuario.toJSON()))
 });
