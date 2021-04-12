@@ -67,3 +67,12 @@ Usuario.findAll({
 .then((result) => {
     console.table(result.map(usuario => usuario.toJSON()))
 });
+
+Comentario.findAll({
+    order: [['id', 'DESC']],
+    limit: 2,
+    offset: 0
+})
+.then((result) => {
+    console.table(result.map(user => user.toJSON()))
+});
