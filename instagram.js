@@ -3,12 +3,12 @@ const {Op} = require('sequelize');
 
 Post.findAll()
 .then((result) => {
-    console.log(result.map(user => user.toJSON()))
+    console.table(result.map(user => user.toJSON()))
 });
 
 Post.findByPk(2)
 .then((result) => {
-    console.log(result.toJSON());
+    console.table(result.toJSON());
 });
 
 Post.findOne({
@@ -17,7 +17,7 @@ Post.findOne({
     }
 })
 .then((result) => {
-    console.log(result.toJSON());
+    console.table(result.toJSON());
 });
 
 Post.findAll({
@@ -26,17 +26,17 @@ Post.findAll({
     }
 })
 .then((result) => {
-    console.log(result.toJSON());
+    console.table(result.toJSON());
 });
 
 Comentario.findAll()
 .then((result) => {
-    console.log(result.map(user => user.toJSON()))
+    console.table(result.map(user => user.toJSON()))
 });
 
 Comentario.findByPk(1)
 .then((result) => {
-    console.log(result.toJSON());
+    console.table(result.toJSON());
 });
 
 Comentario.findOne({
@@ -45,7 +45,7 @@ Comentario.findOne({
     }
 })
 .then((result) => {
-    console.log(result.toJSON());
+    console.table(result.toJSON());
 });
 
 //desafios 12/04
@@ -84,7 +84,7 @@ Usuario.update({
         id: 2
     }
 }).then((resultado) => {
-    console.log(resultado);
+    console.table(resultado);
 });
 
 Usuario.create({
@@ -109,3 +109,20 @@ Post.create({
 Usuario.findAll().then((usuarios) => {
     console.table(usuarios.map((usuario) => usuario.toJSON()));
 })
+
+// Usuario.findByPk(1, {
+//     include: [
+//         {association: "posts"}
+//     ]
+// })
+// .then((usuario) => {
+//     console.table(usuario.posts.map((post) => post.toJSON()))
+// })
+
+// Outro jeito
+Usuario.findByPk(1, {include:['posts']}).then(
+    usuario => {
+        console.log(usuario.toJSON());
+        sequelize.close();
+    }
+)
