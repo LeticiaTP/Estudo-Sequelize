@@ -76,3 +76,36 @@ Comentario.findAll({
 .then((result) => {
     console.table(result.map(user => user.toJSON()))
 });
+
+Usuario.update({
+    email: 'sergio@digitalhouse.com'
+}, {
+    where: {
+        id: 2
+    }
+}).then((resultado) => {
+    console.log(resultado);
+});
+
+Usuario.create({
+    nome: 'Alanda',
+    email: 'alanda@digitalhouse.com',
+    senha: 'dev1234579'
+});
+
+Usuario.destroy({
+    where: {
+        id: 3
+    }
+});
+
+Post.create({
+    texto: 'a dona aranha subiu pela parede',
+    img: 'dona_arana.png',
+    n_likes: 1550000,
+    usuarios_id: 10
+});
+
+Usuario.findAll().then((usuarios) => {
+    console.table(usuarios.map((usuario) => usuario.toJSON()));
+})
