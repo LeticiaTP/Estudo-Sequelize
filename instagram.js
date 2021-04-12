@@ -58,3 +58,12 @@ Usuario.findAll({
 .then((result) => {
     console.table(result.map(usuario => usuario.toJSON()))
 });
+
+Usuario.findAll({
+    where:{
+        nome:{[Op.notLike]: '%a%'}  
+    }
+})
+.then((result) => {
+    console.table(result.map(usuario => usuario.toJSON()))
+});
